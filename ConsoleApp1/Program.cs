@@ -599,28 +599,28 @@ using System.Reflection;
 //}
 
 
-MeezanBank amirAccount = new();
+//MeezanBank amirAccount = new();
 
-amirAccount.bankBalance = 23000;
+//amirAccount.bankBalance = 23000;
 
-Console.WriteLine("Write deposited amount: ");
-int depositedAmount = int.Parse(Console.ReadLine());
+//Console.WriteLine("Write deposited amount: ");
+//int depositedAmount = int.Parse(Console.ReadLine());
 
-amirAccount.deposit(depositedAmount);
-
-
-amirAccount.taxDeposit(230);
-
-Console.WriteLine($"Meezan Bank of Amir: {amirAccount.bankBalance}");
+//amirAccount.deposit(depositedAmount);
 
 
-AlfalahBank amirAccount2 = new();
+//amirAccount.taxDeposit(230);
 
-amirAccount2.bankBalance = 10000;
-amirAccount2.deposit(100);
+//Console.WriteLine($"Meezan Bank of Amir: {amirAccount.bankBalance}");
 
 
-Console.WriteLine($"Alfalah Bank of Amir: {amirAccount2.bankBalance}");
+//AlfalahBank amirAccount2 = new();
+
+//amirAccount2.bankBalance = 10000;
+//amirAccount2.deposit(100);
+
+
+//Console.WriteLine($"Alfalah Bank of Amir: {amirAccount2.bankBalance}");
 
 
 // ABSTRACTION
@@ -656,87 +656,145 @@ Console.WriteLine($"Alfalah Bank of Amir: {amirAccount2.bankBalance}");
 //    }
 
 
-//}
+////}
 
-//public class AlfalahBank : BankAccount
+////public class AlfalahBank : BankAccount
+////{
+
+////}
+
+
+//// INTERFACES
+
+//public interface IBankAccount
 //{
+//    public void deposit(int amount);
+
+//    public void withdraw(int amount);
 
 //}
 
 
-// INTERFACES
-
-public interface IBankAccount
-{
-    public void deposit(int amount);
-
-    public void withdraw(int amount);
-
-}
+//public interface IGovtBankTax
+//{
+//    public void taxDeposit(int taxAmount);
+//}
 
 
-public interface IGovtBankTax
-{
-    public void taxDeposit(int taxAmount);
-}
+//public class MeezanBank : IBankAccount, IGovtBankTax
+//{
+//    public string accountHolderName;
+//    public string accountNumber;
+//    public string accountType;
+//    public string pinCode;
+//    public int bankBalance;
 
 
-public class MeezanBank : IBankAccount, IGovtBankTax
+//    public void deposit(int amount)
+//    {
+
+//        bankBalance += amount;
+
+
+//    }
+
+
+//    public void taxDeposit(int taxAmount)
+//    {
+//        if (bankBalance >= 50000)
+//        {
+//            bankBalance -= taxAmount;
+//        }
+//    }
+
+//    public void withdraw(int amount)
+//    {
+//        bankBalance -= amount;
+//    }
+
+
+//}
+
+//public class AlfalahBank : IBankAccount
+//{
+//    public string accountHolderName;
+//    public string accountNumber;
+//    public string accountType;
+//    public string pinCode;
+//    public int bankBalance;
+//    public void deposit(int amount)
+//    {
+
+//        bankBalance += amount;
+//    }
+//    public void withdraw(int amount)
+//    {
+//        bankBalance -= amount;
+//    }
+//}
+
+//Constructure////////
+
+MeezanBank liaqatAccount = new("liaqat Ali Khan",845678357,40000);
+Console.WriteLine($"{liaqatAccount.accountHolderName},{liaqatAccount.accountNumber},{liaqatAccount.bankBalance}");
+
+
+
+
+public class BankAccount
 {
     public string accountHolderName;
-    public string accountNumber;
-    public string accountType;
-    public string pinCode;
+    public double accountNumber;
     public int bankBalance;
+   
+    public BankAccount(string accountHolderName, double accountNumber, int bankBalance)
+    {
+        this.accountHolderName = accountHolderName;
+        this.accountNumber = accountNumber;
+        this.bankBalance = bankBalance;
 
+    }
+
+
+    public BankAccount(string accountHolderName, double accountNumber, int bankBalance, int pinCode)
+    {
+        this.accountHolderName = accountHolderName;
+        this.accountNumber = accountNumber;
+        this.bankBalance = bankBalance;
+      
+    }
 
     public void deposit(int amount)
-    {
-
+{
         bankBalance += amount;
-
-
-    }
-
-
-    public void taxDeposit(int taxAmount)
-    {
-        if (bankBalance >= 50000)
-        {
-            bankBalance -= taxAmount;
-        }
-    }
-
+}
     public void withdraw(int amount)
     {
         bankBalance -= amount;
     }
 
 
+
 }
 
-public class AlfalahBank : IBankAccount
+
+
+public class MeezanBank : BankAccount
 {
-    public string accountHolderName;
-    public string accountNumber;
-    public string accountType;
-    public string pinCode;
-    public int bankBalance;
-    public void deposit(int amount)
+public MeezanBank(string accountHolderName,double accountNumber,int bankBalance): base (accountHolderName,accountNumber,bankBalance)
     {
 
-        bankBalance += amount;
     }
-    public void withdraw(int amount)
-    {
-        bankBalance -= amount;
-    }
+
+    public MeezanBank(string accountHolderName, double accountNumber, int bankBalance, int pinCode) : base(accountHolderName, accountNumber, bankBalance, pinCode)
+    { }
+
+
 }
 
 
 
-
-
+//static class////
 
 
 
